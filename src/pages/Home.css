@@ -97,18 +97,11 @@ body {
 
 .doctor-graphic {
   font-size: 250px;
-  z-index: 2;
-}
-
-.blob-bg {
-  position: absolute;
-  width: 450px;
-  height: 450px;
-  background: #eff6ff;
   border-radius: 50%;
   z-index: 1;
-  right: -20px;
-  top: 0;
+  height: 500px;
+  width: 500px;
+  z-index: 2;
 }
 
 /* Feature Grid for PC */

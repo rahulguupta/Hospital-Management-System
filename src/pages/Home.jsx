@@ -1,5 +1,6 @@
  import React from 'react';
  import { Link } from 'react-router-dom';
+ import mddc from '../assets/mddc.jpeg'
 import './Home.css';
 
 const Home = () => {
@@ -40,7 +41,7 @@ const Home = () => {
         <div className="hero-visual">
           <div className="blob-bg"></div>
           {/* Replace this emoji with a real medical <img> later */}
-          <div className="doctor-graphic">👨‍⚕️</div>
+          <img src={mddc} alt="mddc image" className="doctor-graphic" ></img>
         </div>
       </section>
 
