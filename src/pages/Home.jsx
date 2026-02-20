@@ -12,8 +12,8 @@ const Home = () => {
           <span className="plus-icon">✚</span>MD<span> HOSPITAL</span>
         </div>
         <div className="nav-links">
-          <Link to="/">Home</Link>
-          <Link to="/departments">Departments</Link>
+          <Link className='Home' to="/">Home</Link>
+          <Link to="/department">Departments</Link>
           <Link to="/doctors">Doctors</Link>
           <Link to="/about">About us</Link>
           
