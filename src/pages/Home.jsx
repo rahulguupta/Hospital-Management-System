@@ -1,44 +1,17 @@
  import React, {useState} from 'react';
  import { Link } from 'react-router-dom';
- import mddc from '../assets/mddc.jpeg'
-import './Home.css';
+ import mddc from '../assets/mddc.jpeg';
+ import Signinpage from '../components/Signinpage';
+ import './Home.css'
 
 const Home = () => {
   const [showSignIn, setShowSignIn] = useState(false);
   return (
     <>
-    {showSignIn && (
-        <div className="modal-overlay" onClick={() => setShowSignIn(false)}>
-          <div className="signin-card" onClick={(e) => e.stopPropagation()}>
-            <button className="close-btn" onClick={() => setShowSignIn(false)}>&times;</button>
-            
-            <h2>Welcome Back</h2>
-            <p>Please enter your details to sign in.</p>
-
-            <form className="signin-form">
-              <div className="input-group">
-                <label>Email Address</label>
-                <input type="email" placeholder="name@hospital.com" required />
-              </div>
-              <div className="input-group">
-                <label>Password</label>
-                <input type="password" placeholder="••••••••" required />
-              </div>
-              
-              <div className="form-options">
-                <label><input type="checkbox" /> Remember me</label>
-                <a href="#forgot">Forgot Password?</a>
-              </div>
-
-              <button type="submit" className="main-btn signin-submit">Sign In</button>
-            </form>
-
-            <p className="signup-link">
-              Don't have an account? <span className="link-text">Create one</span>
-            </p>
-          </div>
-        </div>
-      )}
+    <Signinpage 
+        isOpen={showSignIn} 
+        onClose={() => setShowSignIn(false)} 
+      />
     <div className={`hms-container ${showSignIn ? 'content-blur' : ''}`}>
       {/* TOP NAVIGATION */}
       <nav className="desktop-nav">

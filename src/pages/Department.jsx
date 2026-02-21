@@ -12,6 +12,7 @@ const Departments = () => {
 
   return (
     <div className="hms-container">
+      
       {/* TOP NAVIGATION (Consistent with Home) */}
       <nav className="desktop-nav">
         <div className="nav-logo">
