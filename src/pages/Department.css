@@ -31,7 +31,7 @@
 /* Department Grid System */
 .dept-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 Columns like your feature grid */
+  grid-template-columns: repeat(4, 1fr); /* 3 Columns like your feature grid */
   gap: 30px;
   padding: 40px 0 100px;
 }

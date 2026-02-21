@@ -6,9 +6,7 @@ const Departments = () => {
   const deptList = [
     { id: 1, name: 'Cardiology', icon: '❤️', desc: 'Heart care and cardiovascular surgery.' },
     { id: 2, name: 'Neurology', icon: '🧠', desc: 'Expertise in brain and nervous system health.' },
-    { id: 3, name: 'Pediatrics', icon: '👶', desc: 'Specialized medical care for infants and children.' },
     { id: 4, name: 'Orthopedics', icon: '🦴', desc: 'Focusing on bone, joint, and muscle health.' },
-    { id: 5, name: 'Dermatology', icon: '✨', desc: 'Advanced skin care and aesthetic treatments.' },
     { id: 6, name: 'Radiology', icon: '🩻', desc: 'Precision imaging and diagnostic services.' },
   ];
 
