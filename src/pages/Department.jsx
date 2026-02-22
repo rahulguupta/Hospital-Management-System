@@ -1,8 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import './Department.css';
+import '../components/Signinpage';
+import Signinpage from '../components/Signinpage';
 
 const Departments = () => {
+  const [ShowSignin, setShowSignin] = useState(false);
   const deptList = [
     { id: 1, name: 'Cardiology', icon: '❤️', desc: 'Heart care and cardiovascular surgery.' },
     { id: 2, name: 'Neurology', icon: '🧠', desc: 'Expertise in brain and nervous system health.' },
@@ -11,7 +14,9 @@ const Departments = () => {
   ];
 
   return (
-    <div className="hms-container">
+    <>
+    <Signinpage isOpen={ShowSignin} onClose={()=> setShowSignin(false)}/>
+    <div className={`hms-container ${ShowSignin ? 'content-blur' : ''}`}>
       
       {/* TOP NAVIGATION (Consistent with Home) */}
       <nav className="desktop-nav">
@@ -25,7 +30,7 @@ const Departments = () => {
           <Link to="/about">About us</Link>
         </div>
         <div className="nav-auth">
-          <button className="btn-text">Sign In</button>
+          <button className="btn-text" onClick={()=> setShowSignin(true)}>Sign In</button>
           <button className="btn-filled">Get Started</button>
         </div>
       </nav>
@@ -58,6 +63,7 @@ const Departments = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 

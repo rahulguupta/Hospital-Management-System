@@ -8,10 +8,7 @@ const Home = () => {
   const [showSignIn, setShowSignIn] = useState(false);
   return (
     <>
-    <Signinpage 
-        isOpen={showSignIn} 
-        onClose={() => setShowSignIn(false)} 
-      />
+    <Signinpage isOpen={showSignIn} onClose={() => setShowSignIn(false)} />
     <div className={`hms-container ${showSignIn ? 'content-blur' : ''}`}>
       {/* TOP NAVIGATION */}
       <nav className="desktop-nav">
