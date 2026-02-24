@@ -2,12 +2,16 @@
  import { Link } from 'react-router-dom';
  import mddc from '../assets/mddc.jpeg';
  import Signinpage from '../components/Signinpage';
+ import Bookapointemnt from '../components/Bookapointment';
  import './Home.css'
+import Bookapointment from '../components/Bookapointment';
 
 const Home = () => {
   const [showSignIn, setShowSignIn] = useState(false);
+  const[showApoint, setShowApoint] = useState(false)
   return (
     <>
+    <Bookapointment isOpen={showApoint} onClose={() => setShowApoint(false)}/>
     <Signinpage isOpen={showSignIn} onClose={() => setShowSignIn(false)} />
     <div className={`hms-container ${showSignIn ? 'content-blur' : ''}`}>
       {/* TOP NAVIGATION */}
@@ -38,7 +42,7 @@ const Home = () => {
             administration. Secure, fast, and reliable medical solutions.
           </p>
           <div className="hero-actions">
-            <button className="main-btn">Book Appointment</button>
+            <button className="main-btn" onClick={() => setShowApoint(true)}>Book Appointment</button>
             <button className="outline-btn">Watch Demo</button>
           </div>
         </div>
