@@ -1,8 +1,26 @@
- import React from 'react';
+ import React,{useState} from 'react';
+ import { loginUser } from '../api/auth';
  import './Signinpage.css';
 
 const Signinpage = ({ isOpen, onClose }) => {
+  const [email,setEmail] = useState('');
+  const [password,setPassword] = useState('');
+
   if (!isOpen) return null;
+  
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try{
+      const result = await loginUser({email,password});
+      alert("Login succesfull"+result.user);
+      onClose();
+    }
+    catch(err)
+    {
+      alert("error"+(err.message));
+    }
+  };
+
 
   return (
     <div className="modal-overlay" onClick={onClose}>
@@ -12,14 +30,14 @@ const Signinpage = ({ isOpen, onClose }) => {
         <h2>Welcome Back</h2>
         <p>Please enter your details to sign in.</p>
 
-        <form className="signin-form">
+        <form className="signin-form" onSubmit={handleSubmit}>
           <div className="input-group">
             <label>Email Address</label>
-            <input type="email" placeholder="name@hospital.com" required />
+            <input type="email" placeholder="name@hospital.com" required value={email} onChange={(e) => setEmail(e.target.value)} />
           </div>
           <div className="input-group">
             <label>Password</label>
-            <input type="password" placeholder="••••••••" required />
+            <input type="password" placeholder="••••••••" required value={password} onChange={(e) => setPassword(e.target.value)} />
           </div>
           
           <div className="form-options">

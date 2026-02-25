@@ -26,7 +26,7 @@ const Departments = () => {
         <div className="nav-links">
           <Link to="/">Home</Link>
           <Link to="/departments" className="active-link">Departments</Link>
-          <Link to="/doctors">Doctors</Link>
+          <Link to="/doctor">Doctors</Link>
           <Link to="/about">About us</Link>
         </div>
         <div className="nav-auth">

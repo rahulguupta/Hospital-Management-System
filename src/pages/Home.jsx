@@ -2,8 +2,7 @@
  import { Link } from 'react-router-dom';
  import mddc from '../assets/mddc.jpeg';
  import Signinpage from '../components/Signinpage';
- import Bookapointemnt from '../components/Bookapointment';
- import './Home.css'
+ import './Home.css';
 import Bookapointment from '../components/Bookapointment';
 
 const Home = () => {
@@ -22,7 +21,7 @@ const Home = () => {
         <div className="nav-links">
           <Link className='Home' to="/">Home</Link>
           <Link to="/department">Departments</Link>
-          <Link to="/doctors">Doctors</Link>
+          <Link to="/doctor">Doctors</Link>
           <Link to="/about">About us</Link>
           
         </div>
