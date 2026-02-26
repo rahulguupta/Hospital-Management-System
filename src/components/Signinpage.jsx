@@ -2,7 +2,7 @@
  import { loginUser } from '../api/auth';
  import './Signinpage.css';
 
-const Signinpage = ({ isOpen, onClose }) => {
+const Signinpage = ({ isOpen, onClose, onSwitchSignup }) => {
   const [email,setEmail] = useState('');
   const [password,setPassword] = useState('');
 
@@ -49,7 +49,7 @@ const Signinpage = ({ isOpen, onClose }) => {
         </form>
 
         <p className="signup-link">
-          Don't have an account? <span className="link-text">Create one</span>
+          Don't have an account? <span className="link-text" onClick={() => {onClose(); onSwitchSignup();}}>Create one</span>
         </p>
       </div>
     </div>

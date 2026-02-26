@@ -98,16 +98,7 @@ body {
   box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);
 }
 
-.outline-btn {
-  background: white;
-  color: #1e293b;
-  padding: 18px 36px;
-  border-radius: 16px;
-  border: 1px solid #e2e8f0;
-  font-size: 18px;
-  font-weight: 700;
-  cursor: pointer;
-}
+
 
 /* Hero Graphic */
 .hero-visual {

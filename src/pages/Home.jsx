@@ -2,17 +2,19 @@
  import { Link } from 'react-router-dom';
  import mddc from '../assets/mddc.jpeg';
  import Signinpage from '../components/Signinpage';
+ import Signup from '../components/Signup';
  import './Home.css';
-import Bookapointment from '../components/Bookapointment';
 
 const Home = () => {
   const [showSignIn, setShowSignIn] = useState(false);
-  const[showApoint, setShowApoint] = useState(false)
+  const[showApoint, setShowApoint] = useState(false);
+  const[showSignUP, setshowSignUp] = useState(false);
   return (
     <>
-    <Bookapointment isOpen={showApoint} onClose={() => setShowApoint(false)}/>
-    <Signinpage isOpen={showSignIn} onClose={() => setShowSignIn(false)} />
-    <div className={`hms-container ${showSignIn ? 'content-blur' : ''}`}>
+    <Signinpage isOpen={showApoint} onClose={() => setShowApoint(false) } onSwitchSignup={() => {setShowApoint(false); setshowSignUp(true);}} />
+    <Signinpage isOpen={showSignIn} onClose={() => setShowSignIn(false) } onSwitchSignup={()=>{setShowSignIn(false); setshowSignUp(true);}} />
+    <Signup isOpen={showSignUP} onClose={() => setshowSignUp(false)} onSwitchSignin={() => {setshowSignUp(false); setShowSignIn(true);}}/>
+    <div className={`hms-container ${showSignIn || showApoint || showSignUP ? 'content-blur' : ''}`}>
       {/* TOP NAVIGATION */}
       <nav className="desktop-nav">
         <div className="nav-logo">
@@ -27,7 +29,7 @@ const Home = () => {
         </div>
         <div className="nav-auth">
           <button className="btn-text" onClick={() => setShowSignIn(true)}>Sign In</button>
-          <button className="btn-filled">Get Started</button>
+          <button className="btn-filled" onClick={() => setshowSignUp(true)}>Get Started</button>
         </div>
       </nav>
 
@@ -41,8 +43,7 @@ const Home = () => {
             administration. Secure, fast, and reliable medical solutions.
           </p>
           <div className="hero-actions">
-            <button className="main-btn" onClick={() => setShowApoint(true)}>Book Appointment</button>
-            <button className="outline-btn">Watch Demo</button>
+            <button className="main-btn" onClick={() => setshowSignUp(true)}>Book Appointment</button>
           </div>
         </div>
         <div className="hero-visual">
