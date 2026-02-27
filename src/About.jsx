@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './About.css';
 import Signinpage from './components/Signinpage';
+import Signup from './components/Signup';
 
 const About = () => {
-  const [showSignIn, setShowSignIn] = useState(false);
+  const [ShowSignin, setShowSignin] = useState(false);
+  const[showSignUP, setshowSignUp] = useState(false);
 
   const stats = [
     { id: 1, label: 'Expert Doctors', value: '150+' },
@@ -15,8 +17,9 @@ const About = () => {
 
   return (
     <>
-      <Signinpage isOpen={showSignIn} onClose={() => setShowSignIn(false)} />
-      <div className={`hms-container ${showSignIn ? 'content-blur' : ''}`}>
+      <Signinpage isOpen={ShowSignin} onClose={() => setShowSignin(false) } onSwitchSignup={() => {setShowSignin(false); setshowSignUp(true);}} />
+        <Signup isOpen={showSignUP} onClose={() => setshowSignUp(false)} onSwitchSignin={() => {setshowSignUp(false); setShowSignin(true);}}/>
+      <div className={`hms-container ${ShowSignin ? 'content-blur' : ''}`}>
         
         {/* NAVIGATION (Standard across your app) */}
         <nav className="desktop-nav">
@@ -30,8 +33,8 @@ const About = () => {
             <Link to="/about" className="active-link-about">About us</Link>
           </div>
           <div className="nav-auth">
-            <button className="btn-text" onClick={() => setShowSignIn(true)}>Sign In</button>
-            <button className="btn-filled">Get Started</button>
+            <button className="btn-text" onClick={() => setShowSignin(true)}>Sign In</button>
+            <button className="btn-filled" onClick={() => setshowSignUp(true)}>Get Started</button>
           </div>
         </nav>
 

@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Doctor.css'; 
 import Signinpage from '../components/Signinpage';
+import Signup from '../components/Signup';
 
 const Doctor = () => {
   const [ShowSignin, setShowSignin] = useState(false);
+  const[showSignUP, setshowSignUp] = useState(false);
   
   // This state will hold your doctors. 
   // When you add one via the admin panel/API, this list grows.
@@ -17,7 +19,8 @@ const Doctor = () => {
 
   return (
     <>
-      <Signinpage isOpen={ShowSignin} onClose={() => setShowSignin(false)} />
+      <Signinpage isOpen={ShowSignin} onClose={() => setShowSignin(false) } onSwitchSignup={() => {setShowSignin(false); setshowSignUp(true);}} />
+      <Signup isOpen={showSignUP} onClose={() => setshowSignUp(false)} onSwitchSignin={() => {setshowSignUp(false); setShowSignin(true);}}/>
       <div className={`hms-container ${ShowSignin ? 'content-blur' : ''}`}>
         
         {/* TOP NAVIGATION (Identical to Home) */}
@@ -33,7 +36,7 @@ const Doctor = () => {
           </div>
           <div className="nav-auth">
             <button className="btn-text" onClick={() => setShowSignin(true)}>Sign In</button>
-            <button className="btn-filled">Get Started</button>
+            <button className="btn-filled" onClick={() => setshowSignUp(true)}>Get Started</button>
           </div>
         </nav>
 

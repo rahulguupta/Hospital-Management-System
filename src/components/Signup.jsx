@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import './Signup.css';
+ import { registerUser } from '../api/auth';
 
 const Signup = ({ isOpen, onClose, onSwitchSignin }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
-    password: ''
+    password: '',
+    confirmpass: ''
   });
 
   if (!isOpen) return null;
@@ -17,13 +19,17 @@ const Signup = ({ isOpen, onClose, onSwitchSignin }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if(formData.password != formData.confirmpass)
+    {
+      return  alert("Password not matched")
+    }
     try {
-      // Yahan aap apna api call (registerUser) add kar sakte hain
-      console.log("Registration Data:", formData);
+      const res = await registerUser(formData);
+      console.log("Registration Data:"+res.message);
       alert("Registration Successful for " + formData.name);
       onClose();
     } catch (err) {
-      alert("Error: " + err.message);
+      alert("Error: " + (err.response?.data?.message || err.message));
     }
   };
 
@@ -55,6 +61,10 @@ const Signup = ({ isOpen, onClose, onSwitchSignin }) => {
           <div className="input-group">
             <label>Password</label>
             <input type="password" name="password" placeholder="••••••••" required onChange={handleChange} />
+          </div>
+          <div className="input-group">
+            <label>Confirm Password</label>
+            <input type="password" name="confirmpass" placeholder="••••••••" required onChange={handleChange} />
           </div>
 
           <button type="submit" className="main-btn signin-submit">Create Account</button>

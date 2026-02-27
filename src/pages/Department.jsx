@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import './Department.css';
-import '../components/Signinpage';
 import Signinpage from '../components/Signinpage';
+import Signup from '../components/Signup';
 
 const Departments = () => {
   const [ShowSignin, setShowSignin] = useState(false);
+  const[showSignUP, setshowSignUp] = useState(false);
   const deptList = [
     { id: 1, name: 'Cardiology', icon: '❤️', desc: 'Heart care and cardiovascular surgery.' },
     { id: 2, name: 'Neurology', icon: '🧠', desc: 'Expertise in brain and nervous system health.' },
@@ -15,7 +16,8 @@ const Departments = () => {
 
   return (
     <>
-    <Signinpage isOpen={ShowSignin} onClose={()=> setShowSignin(false)}/>
+    <Signinpage isOpen={ShowSignin} onClose={() => setShowSignin(false) } onSwitchSignup={() => {setShowSignin(false); setshowSignUp(true);}} />
+      <Signup isOpen={showSignUP} onClose={() => setshowSignUp(false)} onSwitchSignin={() => {setshowSignUp(false); setShowSignin(true);}}/>
     <div className={`hms-container ${ShowSignin ? 'content-blur' : ''}`}>
       
       {/* TOP NAVIGATION (Consistent with Home) */}
@@ -31,7 +33,7 @@ const Departments = () => {
         </div>
         <div className="nav-auth">
           <button className="btn-text" onClick={()=> setShowSignin(true)}>Sign In</button>
-          <button className="btn-filled">Get Started</button>
+          <button className="btn-filled" onClick={() => setshowSignUp(true)}>Get Started</button>
         </div>
       </nav>
 
