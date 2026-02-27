@@ -1,8 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import './Signup.css';
  import { registerUser } from '../api/auth';
+import { useNavigate } from 'react-router-dom';
 
 const Signup = ({ isOpen, onClose, onSwitchSignin }) => {
+  const navigate = useNavigate();
+  useEffect(() => {
+  const user = localStorage.getItem('user');
+  if (user) {
+    // Agar user pehle se logged in hai, toh use hamesha dashboard par rakho
+    navigate('/dashboard', { replace: true });
+  }
+},[]);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -19,16 +28,25 @@ const Signup = ({ isOpen, onClose, onSwitchSignin }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if(formData.password != formData.confirmpass)
+    if(formData.password !== formData.confirmpass)
     {
       return  alert("Password not matched")
     }
     try {
       const res = await registerUser(formData);
-      console.log("Registration Data:"+res.message);
+      console.log("Registration Data:"+res.data?.message);
+
+      localStorage.setItem('user', JSON.stringify({
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone
+      }))
+
       alert("Registration Successful for " + formData.name);
+      navigate('/dashboard');
       onClose();
     } catch (err) {
+      console.log("full error", err);
       alert("Error: " + (err.response?.data?.message || err.message));
     }
   };
@@ -45,26 +63,26 @@ const Signup = ({ isOpen, onClose, onSwitchSignin }) => {
         <form className="signin-form" onSubmit={handleSubmit}>
           <div className="input-group">
             <label>Full Name</label>
-            <input type="text" name="name" placeholder="John Doe" required onChange={handleChange} />
+            <input type="text" name="name" placeholder="Name" required onChange={handleChange} />
           </div>
 
           <div className="input-group">
             <label>Email Address</label>
-            <input type="email" name="email" placeholder="name@hospital.com" required onChange={handleChange} />
+            <input type="email" name="email" placeholder="example@gmail.com" required onChange={handleChange} />
           </div>
 
           <div className="input-group">
             <label>Phone Number</label>
-            <input type="tel" name="phone" placeholder="+91 00000 00000" required onChange={handleChange} />
+            <input type="tel" name="phone" placeholder="+91" required onChange={handleChange} />
           </div>
 
           <div className="input-group">
             <label>Password</label>
-            <input type="password" name="password" placeholder="••••••••" required onChange={handleChange} />
+            <input type="password" name="password" placeholder="password" required onChange={handleChange} />
           </div>
           <div className="input-group">
             <label>Confirm Password</label>
-            <input type="password" name="confirmpass" placeholder="••••••••" required onChange={handleChange} />
+            <input type="password" name="confirmpass" placeholder="Confirm-password" required onChange={handleChange} />
           </div>
 
           <button type="submit" className="main-btn signin-submit">Create Account</button>
