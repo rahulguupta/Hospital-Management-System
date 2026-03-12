@@ -1,8 +1,19 @@
- import React,{useState} from 'react';
+ import React,{useEffect, useState} from 'react';
  import { loginUser } from '../api/auth';
+ import { useNavigate } from 'react-router-dom';
  import './Signinpage.css';
 
 const Signinpage = ({ isOpen, onClose, onSwitchSignup }) => {
+  const navigate = useNavigate();
+  useEffect(() => 
+  {
+    const user = localStorage.getItem('user');
+    if(user)
+    {
+      navigate('/dashboard', {replace: true})
+    }
+
+  },[navigate])
   const [email,setEmail] = useState('');
   const [password,setPassword] = useState('');
 
@@ -12,7 +23,9 @@ const Signinpage = ({ isOpen, onClose, onSwitchSignup }) => {
     e.preventDefault();
     try{
       const result = await loginUser({email,password});
+      localStorage.setItem('user', JSON.stringify(result));
       alert("Login succesfull"+result.user);
+      navigate('/dashboard');
       onClose();
     }
     catch(err)
