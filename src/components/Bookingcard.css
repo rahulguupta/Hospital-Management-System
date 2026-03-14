@@ -1,0 +1,91 @@
+/* Full Screen Overlay */
+.booking-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7); /* Darkens the background */
+  backdrop-filter: blur(5px); /* Blurs the UserDash */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+/* The Separate Card */
+.booking-card {
+  background: white;
+  width: 90%;
+  max-width: 450px;
+  border-radius: 28px;
+  padding: 35px;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.close-x {
+  position: absolute;
+  top: 20px; right: 20px;
+  background: #f1f5f9; border: none;
+  width: 30px; height: 30px; border-radius: 50%;
+  font-size: 20px; cursor: pointer; color: #64748b;
+}
+
+/* Header Section */
+.doc-header {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 25px;
+  align-items: center;
+}
+
+.doc-icon {
+  width: 50px; height: 50px; background: #2563eb;
+  color: white; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px;
+}
+
+.doc-title h3 { margin: 0; font-size: 20px; color: #1e293b; }
+.doc-title p { margin: 2px 0; color: #2563eb; font-weight: 700; font-size: 13px; }
+.doc-title span { font-size: 11px; color: #94a3b8; font-weight: 600; }
+
+/* Form Layout */
+.booking-form { display: flex; flex-direction: column; gap: 15px; }
+.input-row { display: flex; gap: 15px; }
+.input-box { display: flex; flex-direction: column; gap: 6px; flex: 1; }
+
+.input-box label { font-size: 11px; font-weight: 800; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; }
+
+.input-box input, .input-box select, .input-box textarea {
+  padding: 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 14px;
+}
+
+.locked-input { background: #f8fafc; color: #94a3b8; cursor: not-allowed; font-weight: 600; }
+
+.confirm-booking-btn {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 16px;
+  border-radius: 14px;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);
+}
+
+/* Pop-in Animation */
+.animate-pop {
+  animation: popUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes popUp {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}

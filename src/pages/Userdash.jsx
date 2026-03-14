@@ -1,15 +1,27 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Userdash.css';
+import BookingCard from '../components/Bookingcard';
 
 const Userdash = () => {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('overview');
+  const [showAp, setshowAp] = useState(false);
+  const [selectedDoctor, setselectedDoctor] = useState(null);
+
+  const HandleOpenBooking = (doc) =>
+  {
+    setselectedDoctor(doc);
+    setshowAp(true);
+  };
+
   const user = JSON.parse(localStorage.getItem('user') || 'null');
 
   if (!user) return <div className="loading">Redirecting...</div>;
 
   return (
+    <>
+    {showAp && <BookingCard doctor={selectedDoctor} onClose={() => setshowAp(false)} />}
     <div className="hms-container">
       {/* --- NAVIGATION --- */}
       <nav className="desktop-nav">
@@ -67,17 +79,17 @@ const Userdash = () => {
               <div className="doc-card">
                 <h4>Dr. Amit Kumar</h4>
                 <p>Cardiology</p>
-                <button className="book-small-btn">Available Today</button>
+                <button className="book-small-btn" onClick={() => HandleOpenBooking({name: 'Dr Amit Kumar', qual: 'MBBS',exp:'3 yrs'})}>Available Today</button>
               </div>
               <div className="doc-card">
                 <h4>Dr. Priya Singh</h4>
                 <p>Neurology</p>
-                <button className="book-small-btn">Book Slot</button>
+                <button className="book-small-btn" onClick={() => HandleOpenBooking({name: 'Dr Priya Singh', qual: 'DM/DNB Neurology', exp: '4 yrs'})}>Book Slot</button>
               </div>
               <div className="doc-card">
                 <h4>Dr. Adarsh Singh</h4>
-                <p>Neurology</p>
-                <button className="book-small-btn">Book Slot</button>
+                <p>Psycology</p>
+                <button className="book-small-btn" onClick={() => HandleOpenBooking({name: 'Dr Adarsh Singh', qual: 'MD Psycologist', exp: '2 yrs'})}>Book Slot</button>
               </div>
               <div className="doc-card">
                 <h4>Dr. Madhusudan das</h4>
@@ -89,6 +101,7 @@ const Userdash = () => {
         )}
       </div>
     </div>
+    </>
   );
 };
 
