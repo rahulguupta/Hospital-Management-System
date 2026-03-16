@@ -20,19 +20,27 @@ const Signinpage = ({ isOpen, onClose, onSwitchSignup }) => {
   if (!isOpen) return null;
   
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    try{
-      const result = await loginUser({email,password});
-      localStorage.setItem('user', JSON.stringify(result));
-      alert("Login succesfull"+result.user);
+  e.preventDefault();
+  try {
+    const result = await loginUser({ email, password });
+
+    // Extract the ID from the nested user object
+    const idToSave = result.user?.userId || result.user?._id;
+
+    if (result && result.user && idToSave) {
+      localStorage.setItem('userId', idToSave); // MUST ADD THIS LINE
+      localStorage.setItem('user', JSON.stringify(result.user));
+      
+      alert("Login successful! Welcome " + result.user.name);
       navigate('/dashboard');
       onClose();
+    } else {
+      alert("Login failed: Server response incomplete.");
     }
-    catch(err)
-    {
-      alert("error"+(err.message));
-    }
-  };
+  } catch (err) {
+    alert("Error: " + (err.response?.data?.message || err.message));
+  }
+};
 
 
   return (

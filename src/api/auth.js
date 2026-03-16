@@ -22,3 +22,11 @@ export const registerUser = async (userData) => {
         throw error; 
     }
 };
+export const bookApointment = async (payload) => {
+    try {
+        const response = await axios.post(`${API_URL}/appointment`, payload);
+        return response.data; 
+    } catch (error) {
+        throw error; 
+    }
+};

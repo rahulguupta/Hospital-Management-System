@@ -2,12 +2,20 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Userdash.css';
 import BookingCard from '../components/Bookingcard';
+import { bookApointment } from '../api/auth';
 
-const Userdash = () => {
+const Userdash = ( ) => {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('overview');
   const [showAp, setshowAp] = useState(false);
   const [selectedDoctor, setselectedDoctor] = useState(null);
+  const [appointments, setAppointments] = useState([]);
+
+  const handleBook = async (data) =>
+  {
+    const response = await bookApointment(data);
+    setAppointments(response.appointments);
+  }
 
   const HandleOpenBooking = (doc) =>
   {
@@ -21,9 +29,8 @@ const Userdash = () => {
 
   return (
     <>
-    {showAp && <BookingCard doctor={selectedDoctor} onClose={() => setshowAp(false)} />}
+    {showAp && <BookingCard doctor={selectedDoctor} onBook={handleBook} onClose={() => setshowAp(false)} />}
     <div className="hms-container">
-      {/* --- NAVIGATION --- */}
       <nav className="desktop-nav">
         <div className="nav-logo">✚ MD <span>HOSPITAL</span></div>
         <div className="nav-links">
