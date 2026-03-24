@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const API_URL = 'http://localhost:5000/api/patients';
 
-// 1. LOGIN ke liye
+
 export const loginUser = async (userData) => {
     try {
         const response = await axios.post(`${API_URL}/signin`, userData);
@@ -36,4 +36,13 @@ export const getMyAppointments = async (userId) => {
         const response = await axios.get(`${API_URL}/my-appointments/${userId}`);
         return response.data; 
     } catch (error) { throw error; }
+};
+
+export const Loginadmin = async (userData) => {
+    try {
+        const response = await axios.post(`${API_URL}/admin`, userData);
+        return response.data;
+    } catch (error) {
+        throw error.response ? error.response.data : "Server Error";
+    }
 };

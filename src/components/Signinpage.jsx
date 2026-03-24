@@ -23,8 +23,7 @@ const Signinpage = ({ isOpen, onClose, onSwitchSignup }) => {
   e.preventDefault();
   try {
     const result = await loginUser({ email, password });
-
-    // Extract the ID from the nested user object
+    
     const idToSave = result.user?.userId || result.user?._id;
 
     if (result && result.user && idToSave) {

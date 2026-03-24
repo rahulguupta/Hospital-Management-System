@@ -33,7 +33,7 @@ const Home = () => {
         </div>
       </nav>
 
-      {/* HERO SECTION - SPLIT DESIGN */}
+      {}
       <section className="hero-pc">
         <div className="hero-text">
           <span className="badge">24/7 Virtual Care Available</span>
