@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './Userdash.css';
 import BookingCard from '../components/Bookingcard';
 import { bookApointment } from '../api/auth';
+import AppointmentCard from '../components/AppointmentCard';
 
 const Userdash = ( ) => {
   const navigate = useNavigate();
@@ -50,6 +51,7 @@ const Userdash = ( ) => {
               <div className="stat-item"><span>Status:</span> <p>Active Patient</p></div>
               <div className="stat-item"><span>Next Visit:</span> <p>None Scheduled</p></div>
             </div>
+            <AppointmentCard/>
           </div>
         )}
 

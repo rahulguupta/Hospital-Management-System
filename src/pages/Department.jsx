@@ -3,10 +3,12 @@ import { Link } from 'react-router-dom';
 import './Department.css';
 import Signinpage from '../components/Signinpage';
 import Signup from '../components/Signup';
+import AdminLog from '../components/AdminLog';
 
 const Departments = () => {
   const [ShowSignin, setShowSignin] = useState(false);
   const[showSignUP, setshowSignUp] = useState(false);
+  const[showAdmin, setshowAdmin] = useState(false);
   const deptList = [
     { id: 1, name: 'Cardiology', icon: '❤️', desc: 'Heart care and cardiovascular surgery.' },
     { id: 2, name: 'Neurology', icon: '🧠', desc: 'Expertise in brain and nervous system health.' },
@@ -18,7 +20,8 @@ const Departments = () => {
     <>
     <Signinpage isOpen={ShowSignin} onClose={() => setShowSignin(false) } onSwitchSignup={() => {setShowSignin(false); setshowSignUp(true);}} />
       <Signup isOpen={showSignUP} onClose={() => setshowSignUp(false)} onSwitchSignin={() => {setshowSignUp(false); setShowSignin(true);}}/>
-    <div className={`hms-container ${ShowSignin ? 'content-blur' : ''}`}>
+      <AdminLog isOpen={showAdmin} onClose={() => setshowAdmin(false)}/>
+    <div className={`hms-container ${ShowSignin || showAdmin || showSignUP ? 'content-blur' : ''}`}>
       
       {/* TOP NAVIGATION (Consistent with Home) */}
       <nav className="desktop-nav">
@@ -62,6 +65,7 @@ const Departments = () => {
           <h2>Need help choosing a department?</h2>
           <p>Consult with our medical advisors for a personalized recommendation.</p>
           <button className="main-btn">Contact Support</button>
+          <button className="main-btn2" onClick={() => setshowAdmin(true)}>Admin</button>
         </div>
       </section>
     </div>

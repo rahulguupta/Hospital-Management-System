@@ -1,0 +1,46 @@
+.appointment-manager-card {
+    background: #fff;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+.appointment-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 15px;
+}
+
+.mini-app-card {
+    display: flex;
+    background: #fdfdfd;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.mini-app-card:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+
+.card-side-border { width: 6px; background: #3498db; }
+
+.card-info { padding: 15px; width: 100%; }
+
+.card-info h4 { margin: 0; color: #2c3e50; }
+
+.app-date { font-size: 0.85rem; color: #7f8c8d; margin: 5px 0; }
+
+.app-problem { font-size: 0.9rem; color: #34495e; background: #f1f2f6; padding: 5px; border-radius: 4px; }
+
+.app-footer { display: flex; justify-content: space-between; margin-top: 10px; font-size: 0.8rem; font-weight: bold; }
+
+.status-tag { color: #2ecc71; }

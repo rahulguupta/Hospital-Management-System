@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './BookingCard.css';
 import { bookApointment } from '../api/auth';
 
-const BookingCard = ({ doctor, onClose, onSubmit,onBook }) => {
+const BookingCard = ({ doctor, onClose, onSubmit }) => {
   // Get patient name from your backend storage
   const user = JSON.parse(localStorage.getItem('user') || '{}');
 
@@ -33,7 +33,7 @@ const BookingCard = ({ doctor, onClose, onSubmit,onBook }) => {
     // 2. Prepare the final package
     const finalPayload = {
       userId: userId, // This links the appointment to the user
-      ...apointData
+      ...apointData,
     };
 
     try {
@@ -43,7 +43,6 @@ const BookingCard = ({ doctor, onClose, onSubmit,onBook }) => {
     } catch (err) {
       alert("Error: " + (err.response?.data?.message || err.message));
     }
-    onBook(finalPayload);
   };
 
   if (!doctor) return null;

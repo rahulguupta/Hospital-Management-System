@@ -28,7 +28,7 @@ const Signinpage = ({ isOpen, onClose, onSwitchSignup }) => {
     const idToSave = result.user?.userId || result.user?._id;
 
     if (result && result.user && idToSave) {
-      localStorage.setItem('userId', idToSave); // MUST ADD THIS LINE
+      localStorage.setItem('userId', idToSave); 
       localStorage.setItem('user', JSON.stringify(result.user));
       
       alert("Login successful! Welcome " + result.user.name);
